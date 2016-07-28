@@ -11,3 +11,7 @@ To install:
 * Click "Load unpacked extension" and select the code folder in this repo
 
 ![Screenshot](screenshot.png?raw=true "Screenshot")
+
+Whee
+
+![Example](example.png?raw=true "Example")
