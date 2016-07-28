@@ -1,0 +1,16 @@
+{
+"name":"Harry Potterize",
+"description":"Adds some whimsy to your headers",
+"version":"1",
+"manifest_version":2,
+"content_scripts": [
+    {
+      "matches": ["http://*/*", "https://*/*"],
+      "js": ["script.js"],
+      "exclude_globs": ["http://google.*", "http://www.google.*"]
+    }
+  ],
+  "icons": { "16": "icon.png",
+             "128": "icon.png"
+           }
+}
