@@ -16,4 +16,4 @@ Whee
 
 ![Example](example.png?raw=true "Example")
 
-p.s if you want to do a pull request and add me some a sweet 16x16 and 128x128 icon, that would be grand.
+p.s if you want to do a pull request and add me a sweet 16x16 and 128x128 icon, that would be grand.
