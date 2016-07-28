@@ -1,16 +1,13 @@
 {
 "name":"Harry Potterize",
-"description":"Adds some whimsy to your headers",
+"description":"Adds some whimsy to your web page headers. Prefixes webpage headers with 'Harry Potter and The'",
 "version":"1",
 "manifest_version":2,
 "content_scripts": [
     {
       "matches": ["http://*/*", "https://*/*"],
       "js": ["script.js"],
-      "exclude_globs": ["http://google.*", "http://www.google.*"]
+      "exclude_globs": ["https://google.*", "https://www.google.*"]
     }
-  ],
-  "icons": { "16": "icon.png",
-             "128": "icon.png"
-           }
+  ]
 }
