@@ -10,6 +10,14 @@ var setText = function(elements, possibleSubs){
   }
 
   var sub = possibleSubs[Math.floor(Math.random()*possibleSubs.length)];
+
+  var subEndsThe = ("the" === sub.slice(sub.length - 3).toLowerCase());
+  var textStartsThe = ("the " === text.slice(0, 4).toLowerCase());
+
+  if (subEndsThe && textStartsThe){
+    text = text.slice(3);
+  }
+
   item.innerText = sub + ' ' + text;
 }
 
