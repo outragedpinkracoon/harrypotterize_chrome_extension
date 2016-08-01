@@ -3,6 +3,10 @@
 "description":"Adds some whimsy to your web page headers. Prefixes webpage headers with 'Harry Potter and The'",
 "version":"1",
 "manifest_version":2,
+"icons": {
+  "16": "hp-16x16.png",
+  "128": "hp-128x128.png"
+},
 "content_scripts": [
     {
       "matches": ["http://*/*", "https://*/*"],
