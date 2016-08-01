@@ -6,7 +6,7 @@
 "content_scripts": [
     {
       "matches": ["http://*/*", "https://*/*"],
-      "js": ["script.js"],
+      "js": ["characters.js", "script.js", "name_replace.js"],
       "exclude_globs": ["https://google.*", "https://www.google.*"]
     }
   ]
