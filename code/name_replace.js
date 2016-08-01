@@ -23,6 +23,10 @@ var extractPeopleFromCalaisResponse = function(calaisResponse){
   return responses.filter(isPerson);
 }
 
+var displayWatermark = function(tag){
+  tag.innerHTML = tag.innerHTML + '<a href="http://opencalais.com"><img src="http://www.opencalais.com/wp-content/uploads/2015/07/1C_logo_250x39.png"/></a>';
+}
+
 var startNameReplacer = function(){
     var tags = [].slice.call(document.getElementsByTagName('p')); // cast p tags to an Array
     var allTagContent = tags.reduce(function(fullText, currentTag){ return fullText + ' ' + currentTag.innerText; }, '');
@@ -40,6 +44,7 @@ var startNameReplacer = function(){
         if (xhttp.readyState === 4 && xhttp.status === 200){
             var foundPeople = extractPeopleFromCalaisResponse( JSON.parse(xhttp.responseText) );
             replaceNames(foundPeople, tags);
+            displayWatermark(tags[tags.length - 1]);
         }
     }
 }
