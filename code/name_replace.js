@@ -1,26 +1,30 @@
 var randomElement = function(array){ return array[Math.floor(Math.random()*array.length)]; }
 var objectToValueArray = function(obj){ return Object.keys(obj).map(function(key){ return obj[key]; }) }
 var isPerson = function(response){ return response._type === 'Person'; }
+var getFirstName = function(fullName){ return fullName.split(' ')[0] }
+var getLastName = function(fullName){ return fullName.split(' ')[1] }
 var replaceTagText = function(tag){ return function(search){ return function(replace){
   tag.innerText = tag.innerText.replace(search, replace);
 }}}
 
-var replaceNames = function(people, tags){
-  people.forEach(function(person){
-    var char = randomElement(characters); // pulled from characters.js
-    tags.forEach(function(tag){
-      var replaceText = replaceTagText(tag);
-      replaceText(person.name)(char.full);
-      replaceText(person.firstname)(char.first);
-      replaceText(person.lastname)(char.last);
-    });
-  })
-}
+var replaceNamesInTags = function(tags){ return function(people){ return function(personMap){ return function(peopleKey){ return function(mapKey){ 
+  tags.forEach(function(tag){
+    var replaceText = replaceTagText(tag);
+    people.forEach(function(person){ 
+      replaceText( person[peopleKey] )( personMap[person.name][mapKey] );
+    })
+  });
+}}}}}
 
 var extractPeopleFromCalaisResponse = function(calaisResponse){
   // Arrays are nicer to work with(and the keys are useless)
   var responses = objectToValueArray(calaisResponse);
-  return responses.filter(isPerson);
+  return responses.filter(isPerson).map(function(person){
+     // The name field can sometimes not match the first or last name field so we create additioal ones to try replacements with later
+    person.getFirst = getFirstName(person.name);
+    person.getLast = getLastName(person.name);
+    return person;
+  });
 }
 
 var displayWatermark = function(tag){
@@ -43,7 +47,18 @@ var startNameReplacer = function(){
     xhttp.onreadystatechange = function(){
         if (xhttp.readyState === 4 && xhttp.status === 200){
             var foundPeople = extractPeopleFromCalaisResponse( JSON.parse(xhttp.responseText) );
-            replaceNames(foundPeople, tags);
+            var personMap = foundPeople.reduce(function(map, person){
+              map[person.name] = randomElement(characters); // pulled from characters.js;
+              return map;
+            }, {});
+            
+            var replaceNames = replaceNamesInTags(tags)(foundPeople)(personMap);
+            replaceNames('name')('full');
+            replaceNames('firstname')('first');
+            replaceNames('lastname')('last');
+            replaceNames('getFirst')('first');
+            replaceNames('getLast')('last');
+
             displayWatermark(tags[tags.length - 1]);
         }
     }
