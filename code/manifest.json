@@ -11,7 +11,7 @@
     {
       "matches": ["http://*/*", "https://*/*"],
       "js": ["characters.js", "script.js", "name_replace.js"],
-      "exclude_globs": ["https://google.*", "https://www.google.*"]
+      "exclude_globs": ["https://google.*", "https://www.google.*", "https://www.facebook.com/", "https://facebook.com/"]
     }
   ]
 }
