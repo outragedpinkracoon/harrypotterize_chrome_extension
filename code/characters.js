@@ -28,5 +28,40 @@ var characters = [
     full: 'Lucius Malfoy',
     first: 'Lucius',
     last: 'Malfoy'
+  },
+  {
+    full: 'Severus Snape',
+    first: 'Severus',
+    last: 'Snape'
+  },
+  {
+    full: 'Draco Malfoy',
+    first: 'Draco',
+    last: 'Malfoy'
+  },
+  {
+    full: 'Albus Dumbledore',
+    first: 'Albus',
+    last: 'Dumbledore'
+  },
+  {
+    full: 'Neville Longbottom',
+    first: 'Neville',
+    last: 'Longbottom'
+  },
+  {
+    full: 'Rubeus Hagrid',
+    first: 'Rubeus',
+    last: 'Hagrid'
+  },
+  {
+    full: 'Minerva McGonagall',
+    first: 'Minerva',
+    last: 'McGonagall'
+  },
+  {
+    full: 'P-poor st-st-stuttering professor Quirrell',
+    first: 'Quirinus',
+    last: 'Quirrell'
   }
 ]
