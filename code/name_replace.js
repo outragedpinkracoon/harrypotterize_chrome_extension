@@ -1,8 +1,14 @@
-var randomElement = function(array){ return array[Math.floor(Math.random()*array.length)]; }
 var objectToValueArray = function(obj){ return Object.keys(obj).map(function(key){ return obj[key]; }) }
 var isPerson = function(response){ return response._type === 'Person'; }
 var getFirstName = function(fullName){ return fullName.split(' ')[0] }
 var getLastName = function(fullName){ return fullName.split(' ')[1] }
+var randomElement = function(array){
+  if(array.length){
+    return array.splice(Math.floor(Math.random()*array.length), 1)[0]; 
+  } else {
+    return null;
+  }
+}
 var replaceTagText = function(tag){ return function(search){ return function(replace){
   tag.innerText = tag.innerText.replace(search, replace);
 }}}
@@ -10,7 +16,8 @@ var replaceTagText = function(tag){ return function(search){ return function(rep
 var replaceNamesInTags = function(tags){ return function(people){ return function(personMap){ return function(peopleKey){ return function(mapKey){ 
   tags.forEach(function(tag){
     var replaceText = replaceTagText(tag);
-    people.forEach(function(person){ 
+    people.forEach(function(person){
+      if(!personMap[person.name]){ return; } // skip this itteration if the person isn't mapped
       replaceText( person[peopleKey] )( personMap[person.name][mapKey] );
     })
   });
